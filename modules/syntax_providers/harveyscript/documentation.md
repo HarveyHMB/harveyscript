@@ -82,6 +82,36 @@ A loadable entrypoint (i need to think of a better name if you know one pls dm m
 ```harveyscript
 enterface Bar
 {
-    function readAndSeek(Integer amount) -> String;
+    function getName() -> String;
+    function getDescription() -> String;
+}
+```
+```harveyscript
+from entrypoints import Bar
+
+entrypoint Bar // automatically implements (enterface still has to be imported), same name is required
+{
+    function getName() -> String;
+    function getDescription() -> String;
+}
+```
+```harveyscript
+// Usage
+import utils
+
+function loadAllModules() -> List<Bar>
+{
+    List<Bar> toReturn = [];
+    foreach (String filePath : utils.filesIn("./modules"))
+    {
+        Bar loaded = Bar.load(filePath);
+        if (loaded == null)
+        {
+            print(f"Module at \"{filePath}\" failed to load!");
+            continue;
+        }
+        toReturn.append(loaded);
+    }
+    return toReturn;
 }
 ```
