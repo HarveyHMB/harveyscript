@@ -1,3 +1,5 @@
+// SYNTAX harveyscript
+
 class ParsingStream
 {
     String text;
