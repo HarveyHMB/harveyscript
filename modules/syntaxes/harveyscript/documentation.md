@@ -12,6 +12,24 @@ function foo(String bar, Integer baz)
     print(bar * baz);
 }
 ```
+A typed function
+```harveyscript
+function <T implements Bar> foo(T bar, Integer baz) -> String
+{
+    return bar.readAndSeek(baz);
+}
+```
+A function with type parameters
+```harveyscript
+function foo<T>(String baz) -> T
+{
+    return (T) components[baz];
+}
+```
+```harveyscript
+// Usage
+Foo myFoo = foo<Foo>("yay");
+```
 A class
 ```harveyscript
 class Foo

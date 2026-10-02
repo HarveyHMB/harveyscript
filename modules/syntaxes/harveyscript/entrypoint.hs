@@ -4,8 +4,13 @@ from entrypoints import SyntaxEntrypoint
 
 entrypoint SyntaxEntrypoint
 {
-    function getName() -> String
+    function getId() -> String
     {
         return "harveyscript";
+    }
+
+    function getName() -> String
+    {
+        return "Harveyscript";
     }
 }

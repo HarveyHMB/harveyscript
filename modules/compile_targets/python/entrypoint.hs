@@ -4,8 +4,13 @@ from entrypoints import CompileTargetEntrypoint
 
 entrypoint CompileTargetEntrypoint
 {
-    function getName() -> String
+    function getId() -> String
     {
         return "python";
+    }
+
+    function getName() -> String
+    {
+        return "Python";
     }
 }
