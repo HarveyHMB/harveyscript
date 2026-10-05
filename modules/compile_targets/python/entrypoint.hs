@@ -2,7 +2,7 @@
 
 from entrypoints import CompileTargetEntrypoint
 
-entrypoint CompileTargetEntrypoint
+enterable class CompileTargetEntrypoint implements CompileTargetEntrypoint
 {
     function getId() -> String
     {

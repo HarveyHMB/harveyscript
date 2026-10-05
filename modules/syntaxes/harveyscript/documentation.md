@@ -96,9 +96,9 @@ function baz(Bar bar) -> String
     return bar.readAndSeek(3);
 }
 ```
-A loadable entrypoint (i need to think of a better name if you know one pls dm me on discord)
+A loadable class
 ```harveyscript
-enterface Bar
+interface Bar
 {
     function getName() -> String;
     function getDescription() -> String;
@@ -107,10 +107,17 @@ enterface Bar
 ```harveyscript
 from entrypoints import Bar
 
-entrypoint Bar // automatically implements (enterface still has to be imported), same name is required
+enterable class MyItem implements Bar // enterable is required to make the class loadable
 {
-    function getName() -> String;
-    function getDescription() -> String;
+    function getName() -> String
+    {
+        return "Skin Case"
+    }
+
+    function getDescription() -> String
+    {
+        return "Gambling for kids!"
+    }
 }
 ```
 ```harveyscript
@@ -122,10 +129,16 @@ function loadAllModules() -> List<Bar>
     List<Bar> toReturn = [];
     foreach (String filePath : utils.filesIn("./modules"))
     {
-        Bar loaded = Bar.load(filePath);
-        if (loaded == null)
+        Library lib = Library.load(filePath);
+        if (lib == null)
         {
             print(f"Module at \"{filePath}\" failed to load!");
+            continue;
+        }
+        Bar loaded = lib.get<Bar>("entrypoints.BarEntrypoint"); // this input can be dynamic
+        if (loaded == null)
+        {
+            print(f"Entrypoint from module at \"{filePath}\" failed to load!");
             continue;
         }
         toReturn.append(loaded);

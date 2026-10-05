@@ -2,7 +2,7 @@
 
 from entrypoints import SyntaxEntrypoint
 
-entrypoint SyntaxEntrypoint
+enterable class SyntaxEntrypoint implements SyntaxEntrypoint
 {
     function getId() -> String
     {

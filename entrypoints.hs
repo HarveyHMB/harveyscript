@@ -1,12 +1,12 @@
 // SYNTAX harveyscript
 
-enterface SyntaxEntrypoint
+interface SyntaxEntrypoint
 {
     function getId() -> String;
     function getName() -> String;
 }
 
-enterface CompileTargetEntrypoint
+interface CompileTargetEntrypoint
 {
     function getId() -> String;
     function getName() -> String;
